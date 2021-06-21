@@ -10,11 +10,17 @@ import "./IVBEP20.sol";
 /// @author [Email](mailto:oluwafemialofe@yahoo.com) [Telegram](t.me/@DreWhyte)
 contract PiggyFi is Initializable, OwnableUpgradeable {
 
-    uint private chainId = 4;
+    ////////////////////////////////////////
+    //                                    //
+    //         STATE VARIABLES            //
+    //                                    //
+    ////////////////////////////////////////
 
-    string name;
+    uint private chainId;
 
-    string version;
+    bytes name;
+
+    bytes version;
 
     string private constant EIP712_DOMAIN  = "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)";
 
@@ -24,13 +30,7 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
 
     bytes32 private constant AUTH_TYPEHASH = keccak256(abi.encodePacked(AUTH_TYPE));
 
-    bytes32 private DOMAIN_SEPARATOR = keccak256(abi.encode(
-            EIP712_DOMAIN_TYPEHASH,
-            keccak256(name),  // string name
-            keccak256(version),
-            chainId,  // uint256 chainId
-            0x7943826a6ad20b7b09451bc14138f7fc76c4922c  // address verifyingContract
-        ));
+    bytes32 private DOMAIN_SEPARATOR;
 
     /// @dev Users profile
     struct User {
@@ -53,13 +53,13 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
     /// @dev EIP712 struct usage to verify signer
     struct Auth {
       string username;
-      string from;
+      string action;
     }
 
     struct Credentials {
+      uint8 v;
       bytes32 r;
       bytes32 s;
-      uint8 v;
     }
 
     /// @dev Users savings on PiggyFi
@@ -71,17 +71,35 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
     /// @dev For username Lookup
     mapping (string => bool) usernames;
 
-    event SignatureExtracted(address index signer, string indexed action);
+    ////////////////////////////////////////
+    //                                    //
+    //              EVENTS                //
+    //                                    //
+    ////////////////////////////////////////
+
+    event SignatureExtracted(address indexed signer, string indexed action);
 
     /// @dev Contructor
     /// @param _name App name
-    function __PiggyFi_init(string memory _name, string memory _version) public initializer {
-      name = _name;
-      version = _version;
+    function __PiggyFi_init(string memory _name, string memory _version, uint256 _chainId) public initializer {
+
+      DOMAIN_SEPARATOR = keccak256(abi.encode(
+              EIP712_DOMAIN_TYPEHASH,
+              keccak256(abi.encodePacked(_name)),       // string _name
+              keccak256(abi.encodePacked(_version)),    // string _version
+              _chainId,                                 // uint256 _chainId
+              address(this)                             // address _verifyingContract
+          ));
 
       __Context_init_unchained();
       __Ownable_init_unchained();
     }
+
+    ////////////////////////////////////////
+    //                                    //
+    //              FUNCTIONS             //
+    //                                    //
+    ////////////////////////////////////////
 
     function hashAuth(Auth memory auth) private view returns (bytes32) {
         return keccak256(abi.encodePacked(
@@ -90,21 +108,21 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
                 keccak256(abi.encode(
                     AUTH_TYPEHASH,
                     keccak256(bytes(auth.username)),
-                    keccak256(bytes(auth.from))
+                    keccak256(bytes(auth.action))
                 ))
             ));
     }
 
-    function _getSigner(Auth memory _auth, Credentials memory _credential, string actionType) private returns (address signer) {
+    function _getSigner(Auth memory _auth, Credentials memory _credential) public returns (address signer) {
         signer = ecrecover(hashAuth(_auth), _credential.v, _credential.r, _credential.s);
 
-        emit SignatureExtracted(signer, actionType);
+        emit SignatureExtracted(signer, _auth.action);
 
         return signer;
     }
 
     /// @dev Create a new user profile
-    function newUser(User memory _user) public returns(User)
+    function newUser(User memory _user) public returns(User memory profile)
     {
 
     }
