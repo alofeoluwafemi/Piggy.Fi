@@ -414,6 +414,46 @@
       "address": "0x82B3Ea22c474269702A37dFFb42927b2A427F221",
       "txHash": "0xeda028c314f396009ff1a7950f9af77078bc61b4c3d94008bbcbaa82fbfc12a8",
       "kind": "transparent"
+    },
+    {
+      "address": "0x915a00F7c65fd169DaE8e4ba5AB9D9bED9D26a84",
+      "txHash": "0xd2a7301b99ad300da6a73316113c9d1e6ec784b0a02a711dc6949bdc2488a1a8",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xf6423255396a841De59B44C54788Bc04c7062355",
+      "txHash": "0xe4b66cd21d164b3999f3f5b4c8c4ee9b71404f0134ddae8ed066de0cb48a058d",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xed013Dc48F92B5846B8b89FBdcfc4ae3a538BbE3",
+      "txHash": "0xc2205c6756a5e83abf91c5b49d5f304e65b6c364bdf258b38e5064eb62da80f4",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x95724f825aCd95B90d4051Db618c10D155A893ed",
+      "txHash": "0x8233aa10985b31461d725747308416aa85f0baa147373a415c532a2478703c6b",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xd760f5b5F26045e7a5FC3108A5b889eA6760e1Ae",
+      "txHash": "0x0a7a3ac3e3da018978456cc6c69c9bb5dd142e427c5a1f6815b1b2d1ba8fe7ac",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xC7B3bBa749C3D07c78d60A2D9fCddaAde6E14db6",
+      "txHash": "0xf10496134a41c55a7c336203560dd1529b5b16e952d26c3cbebdb59886a2a733",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x5B08F9086DfACC5027d34903166588b2E8377F0a",
+      "txHash": "0x4fb2f6887654c3b82535639df477c4c5bcef06bcb2732cbc8edd4b1d0f293689",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xFC81498B8b5931c286C365D14043E58c82D8bA12",
+      "txHash": "0x03ab04dd13ab0455bbc7a54650a3dbc4479bb47e5855f8cb2d5f9e5ca75f4c75",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -877,6 +917,152 @@
             "label": "mapping(address => struct PiggyFi.Vendor)"
           },
           "t_struct(Vendor)158_storage": {
+            "label": "struct PiggyFi.Vendor",
+            "members": [
+              {
+                "label": "publicKey",
+                "type": "t_address"
+              },
+              {
+                "label": "username",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "daiBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "openOrders",
+                "type": "t_array(t_int256)dyn_storage"
+              }
+            ]
+          },
+          "t_array(t_int256)dyn_storage": {
+            "label": "int256[]"
+          },
+          "t_int256": {
+            "label": "int256"
+          },
+          "t_mapping(t_string_memory_ptr,t_bool)": {
+            "label": "mapping(string => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    },
+    "a7fe3e5d15815195e0d138bb32d1cd57eabb7d65af4c15c935955ca7c784f292": {
+      "address": "0x4ba46054B86da97433858891E9B7F5b6e03603b8",
+      "txHash": "0xc59fb80fec5025989794a782f686480ed3bfd265b0a9a4200bb166a288bff239",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:23"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:28"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "DOMAIN_SEPARATOR",
+            "type": "t_bytes32",
+            "src": "PiggyFi.sol:33"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "users",
+            "type": "t_mapping(t_address,t_struct(User)145_storage)",
+            "src": "PiggyFi.sol:60"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "vendors",
+            "type": "t_mapping(t_address,t_struct(Vendor)155_storage)",
+            "src": "PiggyFi.sol:63"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "usernames",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)",
+            "src": "PiggyFi.sol:66"
+          }
+        ],
+        "types": {
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_struct(User)145_storage)": {
+            "label": "mapping(address => struct PiggyFi.User)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_struct(User)145_storage": {
+            "label": "struct PiggyFi.User",
+            "members": [
+              {
+                "label": "publicKey",
+                "type": "t_address"
+              },
+              {
+                "label": "username",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "daiBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "underlyingBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "vTokenBalance",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_address,t_struct(Vendor)155_storage)": {
+            "label": "mapping(address => struct PiggyFi.Vendor)"
+          },
+          "t_struct(Vendor)155_storage": {
             "label": "struct PiggyFi.Vendor",
             "members": [
               {

@@ -6,9 +6,7 @@ const PiggyFi = artifacts.require('PiggyFi');
 const truffleAssert = require('truffle-assertions');
 
 let provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/05c12b07721045d2824c506f3aef90c2');
-let wallet = new ethers.Wallet("c8c49b67b4878582a6ff17f6f86d83f1c8c3f0778ad51041c2d3b9360bec4772");
-
-wallet = wallet.connect(provider);
+let wallet = new ethers.Wallet(process.env.USER_A_PRIVATE_KEY, provider);
 
 // Start test block
 contract('PiggyFi savings platform', function (accounts) {
@@ -16,11 +14,13 @@ contract('PiggyFi savings platform', function (accounts) {
 
     const [userA, userB, vendorA] = accounts;
 
+    console.log(accounts);
+
     //Deploy a new PiggyFi contract for each test
     beforeEach(async function () {
-      await deployProxy(PiggyFi, ["PiggyFi", "1", 4], {initializer: '__PiggyFi_init'});
+      //await deployProxy(PiggyFi, ["PiggyFi", "1", 4], {initializer: '__PiggyFi_init'});
 
-      piggy = await PiggyFi.deployed();
+      piggy = await PiggyFi.at("0xccc3d93142B6de14E8B1c737b62E9E5a54f1e91f",{from: userA});
     });
 
 
@@ -48,11 +48,12 @@ contract('PiggyFi savings platform', function (accounts) {
       const signature = await wallet._signTypedData(domain, types, value);
       const {v, r, s} = ethers.utils.splitSignature(signature);
 
-      const response = await piggy._getSigner(['DreWhyte','newUser'], [v, r, s])
+      //0xe84b6Dc1B28dce622D704B0479878896b6943267
+
+      const response = await piggy.getSigner(['DreWhyte','newUser'], [v, r, s],{from: userA});
 
       truffleAssert.eventEmitted(response, 'SignatureExtracted', (event) => {
-          console.log(event.param1);
-          //return ev.param1 === userA && ev.param2 === 'newUser';
+          return event.signer === userA && event.action === 'newUser';
       });
     });
 

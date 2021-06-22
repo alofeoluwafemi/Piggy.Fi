@@ -4,11 +4,11 @@ pragma solidity ^0.8.0;
 
 import  "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import  "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "./IBEP20.sol";
-import "./IVBEP20.sol";
+//import "./IBEP20.sol";
+//import "./IVBEP20.sol";
 
 /// @author [Email](mailto:oluwafemialofe@yahoo.com) [Telegram](t.me/@DreWhyte)
-contract PiggyFi is Initializable, OwnableUpgradeable {
+contract PiggyFi is Initializable, OwnableUpgradeable{
 
     ////////////////////////////////////////
     //                                    //
@@ -16,15 +16,15 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
     //                                    //
     ////////////////////////////////////////
 
-    uint private chainId;
-
-    bytes name;
-
-    bytes version;
+    /// @dev EIP712 struct usage to verify signer
+    struct Auth {
+      string username;
+      string action;
+    }
 
     string private constant EIP712_DOMAIN  = "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)";
 
-    string private constant AUTH_TYPE = "Auth(address publicKey,string username)";
+    string private constant AUTH_TYPE = "Auth(string username,string action)";
 
     bytes32 private constant EIP712_DOMAIN_TYPEHASH = keccak256(abi.encodePacked(EIP712_DOMAIN));
 
@@ -48,12 +48,6 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
       string username;
       uint daiBalance;
       int[] openOrders;
-    }
-
-    /// @dev EIP712 struct usage to verify signer
-    struct Auth {
-      string username;
-      string action;
     }
 
     struct Credentials {
@@ -82,7 +76,6 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
     /// @dev Contructor
     /// @param _name App name
     function __PiggyFi_init(string memory _name, string memory _version, uint256 _chainId) public initializer {
-
       DOMAIN_SEPARATOR = keccak256(abi.encode(
               EIP712_DOMAIN_TYPEHASH,
               keccak256(abi.encodePacked(_name)),       // string _name
@@ -90,9 +83,6 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
               _chainId,                                 // uint256 _chainId
               address(this)                             // address _verifyingContract
           ));
-
-      __Context_init_unchained();
-      __Ownable_init_unchained();
     }
 
     ////////////////////////////////////////
@@ -113,7 +103,7 @@ contract PiggyFi is Initializable, OwnableUpgradeable {
             ));
     }
 
-    function _getSigner(Auth memory _auth, Credentials memory _credential) public returns (address signer) {
+    function getSigner(Auth memory _auth, Credentials memory _credential) public returns (address signer) {
         signer = ecrecover(hashAuth(_auth), _credential.v, _credential.r, _credential.s);
 
         emit SignatureExtracted(signer, _auth.action);
