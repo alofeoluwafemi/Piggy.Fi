@@ -4,8 +4,8 @@ pragma solidity ^0.8.0;
 
 import  "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import  "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-//import "./IBEP20.sol";
-//import "./IVBEP20.sol";
+import "./IBEP20.sol";
+import "./IVBEP20.sol";
 
 /// @author [Email](mailto:oluwafemialofe@yahoo.com) [Telegram](t.me/@DreWhyte)
 contract PiggyFi is Initializable, OwnableUpgradeable{
@@ -39,6 +39,7 @@ contract PiggyFi is Initializable, OwnableUpgradeable{
       uint daiBalance;
       uint underlyingBalance;
       uint vTokenBalance;
+      bool isUser;
     }
 
     /// @dev Vendors profile
@@ -50,7 +51,7 @@ contract PiggyFi is Initializable, OwnableUpgradeable{
       int[] openOrders;
     }
 
-    struct Credentials {
+    struct Credential {
       uint8 v;
       bytes32 r;
       bytes32 s;
@@ -103,7 +104,7 @@ contract PiggyFi is Initializable, OwnableUpgradeable{
             ));
     }
 
-    function getSigner(Auth memory _auth, Credentials memory _credential) public returns (address signer) {
+    function getSigner(Auth memory _auth, Credential memory _credential) public returns (address signer) {
         signer = ecrecover(hashAuth(_auth), _credential.v, _credential.r, _credential.s);
 
         emit SignatureExtracted(signer, _auth.action);
@@ -112,8 +113,31 @@ contract PiggyFi is Initializable, OwnableUpgradeable{
     }
 
     /// @dev Create a new user profile
-    function newUser(User memory _user) public returns(User memory profile)
+    /// @param _credential signature details
+    function newUser(User memory _user, Credential memory _credential) public returns(User memory profile)
     {
+        require(usernames[_user.username] != true, 'Username already taken');
 
+        Auth memory _auth = Auth({
+            username: _user.username,
+            action: 'newUser'
+        });
+
+        address signer = getSigner(_auth, _credential);
+
+        require(users[signer].isUser != true, 'Account already exist');
+
+        usernames[_user.username] = true;
+
+        users[signer] = User({
+          publicKey: signer,
+          username: _user.username,
+          daiBalance: 0,
+          underlyingBalance: 0,
+          vTokenBalance: 0,
+          isUser: true
+        });
+
+        return users[signer];
     }
 }
