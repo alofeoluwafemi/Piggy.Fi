@@ -1,0 +1,192 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x0d453249801EB5123af19A46f0610D1bCe7B4494",
+    "txHash": "0x329df821254ef592692860c5173eb6f3b5548d5d31f5fda37d4637af6cb8a08c"
+  },
+  "proxies": [
+    {
+      "address": "0x4cf0CD07C8315B6D2C963EBF18c53Db62773557C",
+      "txHash": "0x996599bd84852d02a93037c6abc6c36ee97606e5808ccdf8b42b90356501ad2f",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x34c32856B1be43483C2A518638590Fd693382651",
+      "txHash": "0xdef2e271b89b612f8239abf54e3b71a90ad300601d4fa0b4a8bcd3729c4c2b58",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x36C1eeFeDe69B20491ab1E800A1E11bCF8BD4CBC",
+      "txHash": "0x26d7ce3f6f921ce58633b8eab6d1c67ae49fd807a3343212c9bf4c7317713e1d",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x1950De0E534f9d0ad16857e10957a215A4fAd12a",
+      "txHash": "0x2eaa4ecb71a3af6b9aba68a823606124ba2520c5c2ba0db7d4b749230ccef711",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x6C334Aa055eB042b662aD1f827d4A53775026230",
+      "txHash": "0x77315b655c9f3bf6c3c904a9c62e5df64a92b7d54c360ce45f261904d49cc5b1",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xddC518F86E24c2edB05f54988A0367cE8df92A29",
+      "txHash": "0x27cf02482955cb604bc7c67a3c6e78503efbe8e5934fb24a8e0a60e82ccfbfc0",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xCc9888AB26Fc541Db0b31Fd274105A8dDBd0e2d7",
+      "txHash": "0x2ab2783de4f63378b059323b3425e51d4b36451139a91a3a81aed265eb508770",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "a7fe3e5d15815195e0d138bb32d1cd57eabb7d65af4c15c935955ca7c784f292": {
+      "address": "0x5fc5dbaB23BDf9a26B4b564f86f541e1824e3a53",
+      "txHash": "0xe14395912faab0af6e54c6e0c525789aa70cc97730d9aa87328c687177160f06",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:23"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:28"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "DOMAIN_SEPARATOR",
+            "type": "t_bytes32",
+            "src": "PiggyFi.sol:33"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "users",
+            "type": "t_mapping(t_address,t_struct(User)145_storage)",
+            "src": "PiggyFi.sol:60"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "vendors",
+            "type": "t_mapping(t_address,t_struct(Vendor)155_storage)",
+            "src": "PiggyFi.sol:63"
+          },
+          {
+            "contract": "PiggyFi",
+            "label": "usernames",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)",
+            "src": "PiggyFi.sol:66"
+          }
+        ],
+        "types": {
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_struct(User)145_storage)": {
+            "label": "mapping(address => struct PiggyFi.User)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_struct(User)145_storage": {
+            "label": "struct PiggyFi.User",
+            "members": [
+              {
+                "label": "publicKey",
+                "type": "t_address"
+              },
+              {
+                "label": "username",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "daiBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "underlyingBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "vTokenBalance",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_address,t_struct(Vendor)155_storage)": {
+            "label": "mapping(address => struct PiggyFi.Vendor)"
+          },
+          "t_struct(Vendor)155_storage": {
+            "label": "struct PiggyFi.Vendor",
+            "members": [
+              {
+                "label": "publicKey",
+                "type": "t_address"
+              },
+              {
+                "label": "username",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "daiBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "openOrders",
+                "type": "t_array(t_int256)dyn_storage"
+              }
+            ]
+          },
+          "t_array(t_int256)dyn_storage": {
+            "label": "int256[]"
+          },
+          "t_int256": {
+            "label": "int256"
+          },
+          "t_mapping(t_string_memory_ptr,t_bool)": {
+            "label": "mapping(string => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    }
+  }
+}

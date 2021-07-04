@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "solhint": "./node_modules/.bin/solhint -f table contracts/**/*.sol",
+    "prettier:solidity": "./node_modules/.bin/prettier --write contracts/**/*.sol"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +22,16 @@
   },
   "devDependencies": {
     "@openzeppelin/contracts-upgradeable": "^4.1.0",
-    "@openzeppelin/truffle-upgrades": "^1.7.0"
+    "@openzeppelin/truffle-upgrades": "^1.7.0",
+    "husky": "^7.0.0",
+    "prettier": "^2.3.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.13",
+    "solhint": "^3.3.6",
+    "solhint-plugin-prettier": "^0.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run prettier:solidity"
+    }
   }
 }

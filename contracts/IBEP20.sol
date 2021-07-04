@@ -7,5 +7,7 @@ interface IBEP20 {
 
     function transfer(address, uint256) external returns (bool);
 
-    function allowance(address owner, address spender) external returns (uint256);
+    function allowance(address owner, address spender)
+        external
+        returns (uint256);
 }
