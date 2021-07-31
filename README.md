@@ -1,13 +1,34 @@
-![Piggy.Fi](https://drewhyte-west-1.s3.us-west-1.amazonaws.com/Piggy.fi.jpg)
-
 ### Problem
 
-Inflation in Nigeria today keeps devaluing the population's hard earned money coupled with the Nigerian government's recent policy and ban. The country has not been attractive to foreign investors or trade of late which keeps making the Nigerian Naira devalue more against the US dollars.
+Sub-Saharan Africa has one of the highest inflation rates in the world.
 
-In the span of 12 months we have seen the Naira devalue drastically from **$1 ~ 360 NGN** to **$1 ~ 500 NGN**.  Which means, a savings of **500,000 NGN** equivalent of **$1,389** then, now worths about **$1,000** or a little more than that. It's frustrating for an average Nigerian to see their savings dwindle such a short time.
+Individuals and Families saving money in their local currency do not have an easy way to guard their life savings against devaluation.
 
-The emergence of crypto currencies has enabled a few Nigerians to easily convert their savings from Fiat to stable coins such as Dai, BUSD or USDC but only a few people have the technical know-how to do so.
+Businesses that make purchases in USD and sell in their local currency sometimes run into a loss when the value of the dollar goes up, and they have to repurchase the same goods at a higher amount than they sold it equivalent to their local currency.
+
+Source: https://www.imf.org/external/datamapper/PCPIPCH@WEO/OEMDC/SSQ
+
+### Case Study
+|   -    | - |
+| ----------- | ----------- |
+| Country      | Nigeria       |
+| Inflation   | 17.75%        |
+
+
+The Naira has devalued drastically in the last 12 months, from 
+USD 1 = 360 NGN to as high as USD 1 = 500 NGN at one point in time.
+
+A Fixed income earner saving N20,000 monthly at ($1 = N360 ) in the last 12 months.
+
+Would have saved a sum of N240,000 which is suppose to be equivalent of  $660 but instead will be worth only $500 at year end. Resulting in a huge loss of $160 in value of money due to current inflation rate.
 
 ### Solution
 
-Piggy.Fi is a savings platform <u>without the need of an ethereum client</u>, that allows savings using Fiat (NGN), which are in turn converted into stable coins via a P2P market and staked on Lending platforms such as Compound &amp; Venus protocol to earn interest. Upon withdrawal of savings as stable coins, it can be converted back to Fiat via a P2P market.
+A Defi savings platform without the need of an ethereum client such as Metamask, that allows anyone to save in a much more stable currency such as the US Dollars, by leveraging on Stable cryptocurrencies such as USDT and generating interest on savings by Staking in a Lending platform such as Compound protocol or Venus protocol.
+
+- Built on Binance Smart Chain with Low gas fee
+- No technical knowledge of how to use ethereum clients
+- No central organization holds users funds
+- Policy such as the Central Bank controlling number of dollar circulating in the economy won’t affect users
+
+![Piggy.Fi](https://drewhyte-west-1.s3.us-west-1.amazonaws.com/Piggy.fi.jpg)
