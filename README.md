@@ -35,6 +35,6 @@ A Defi savings platform without the need of an ethereum client such as Metamask,
 
 ### Awards
 
-Binance Hackhaton Winner 2021 (Defi Category)
+Binance Hackhaton Winner 2021 (Defi Prize)
 
 ![Hackhathon Winner](https://drewhyte-west-1.s3.us-west-1.amazonaws.com/winner.png)
